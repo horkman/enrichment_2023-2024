@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Day One!</title>
+
+    <!-- These are our custom CSS styles -->
+    <link href="./styles.css" rel="stylesheet" />
+
+    <script src="app.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+          document.getElementById("currentTime").innerHTML =
+            window.app.getCurrentDateTime();
+        },
+        false
+      );
+    </script>
+  </head>
+  <body>
+    <div class="app">
+      <div>The current date and time is <span id="currentTime">???</span></div>
+    </div>
+  </body>
+</html>
