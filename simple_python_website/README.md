@@ -1,5 +1,11 @@
 
+To start a quick web server in any folder
+```
+python3 -m http.server
+```
 
+Some useful links
+-
 https://pythonbasics.org/webserver/
 
 https://realpython.com/python-http-server/

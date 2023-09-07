@@ -8,14 +8,9 @@
 
     <script src="app.js" type="text/javascript"></script>
     <script type="text/javascript">
-      document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-          document.getElementById("currentTime").innerHTML =
-            window.app.getCurrentDateTime();
-        },
-        false
-      );
+      // We want "listen" for the browser to tell us when the page is done rendering
+      // so we can initialize our app
+      document.addEventListener("DOMContentLoaded", window.app.initialize);
     </script>
   </head>
   <body>
