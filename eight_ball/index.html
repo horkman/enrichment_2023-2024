@@ -15,7 +15,13 @@
   </head>
   <body>
     <div class="app">
-      <div>The current date and time is <span id="currentTime">???</span></div>
+      <label for="name">First Name (4 to 8 characters):</label>
+      <input type="text" id="firstName" />
+      <br />
+      <label for="name">Last Name (4 to 8 characters):</label>
+      <input type="text" id="lastName" />
+      <br />
+      <button onclick="window.app.showName();">Click me!</button>
     </div>
   </body>
 </html>
