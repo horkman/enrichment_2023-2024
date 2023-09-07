@@ -28,6 +28,17 @@ app.showName = function showName() {
 
   if (!firstName || !lastName) {
     alert("you forgot to type something!");
+    return;
+  }
+
+  if (firstName.length < 4) {
+    alert("not long enough!");
+    return;
+  }
+
+  if (firstName.length > 8) {
+    alert("too long!");
+    return;
   }
 
   alert("Hello, " + firstName + " " + lastName + "!");
