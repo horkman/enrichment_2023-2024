@@ -1,14 +1,22 @@
 /**
  * Random Answer App
- *
- * TODO: how should we handle an empty question?
- * TODO: how would we add an extra answer?
- * TODO: how would we add a reset or clear button?
  */
+
+function resetForm() {
+  $("#question").val("");
+  $(".answer").text("");
+  $(".answer").hide();
+}
 
 function getRandomAnswer(question) {
   // Our array/list of possible answers
-  const possibleAnswers = ["Yes.", "No.", "Reply hazy, try again."];
+  // Remember: Array indexes always start at zero!
+  const possibleAnswers = [
+    "Yes.",
+    "No.",
+    "Reply hazy, try again.",
+    "Hmmm, maybe.",
+  ];
 
   // First, let's get a random number between 0 and 1
   const randomNumber = Math.random();
@@ -35,10 +43,22 @@ $("#answerButton").click(function () {
   // typed into the input box
   const question = $("#question").val();
 
+  if (question === "") {
+    $(".answer").show();
+    $(".answer").text("You didn't type anything in!!!!");
+    return;
+  }
+
   // Now, we need to pass the question to our
   // processing function so we can generate an answer
   const answer = getRandomAnswer(question);
 
   // Finally, we need to display the answer
   displayAnswer(answer);
+});
+
+$(".answer").hide();
+
+$("#resetButton").click(function () {
+  resetForm();
 });
