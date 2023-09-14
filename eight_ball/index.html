@@ -6,22 +6,33 @@
     <!-- These are our custom CSS styles -->
     <link href="./styles.css" rel="stylesheet" />
 
-    <script src="app.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      // We want "listen" for the browser to tell us when the page is done rendering
-      // so we can initialize our app
-      document.addEventListener("DOMContentLoaded", window.app.initialize);
-    </script>
+    <!--
+      This is a convenient and easy way to add a custom library to
+      our app so we can easily use the functionality it provides.
+      We are loading it from a site called a CDN - content delivery network.
+      This is the jQuery  library.
+    -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="app">
-      <label for="name">First Name (4 to 8 characters):</label>
-      <input type="text" id="firstName" />
-      <br />
-      <label for="name">Last Name (4 to 8 characters):</label>
-      <input type="text" id="lastName" />
-      <br />
-      <button onclick="window.app.showName();">Click me!</button>
+      <form>
+        <label for="question"
+          >Ask me a question and I'll give you an answer!</label
+        >
+        <input type="text" id="question" />
+        <button type="button" id="answerButton">Answer My Question</button>
+      </form>
+
+      <!-- We want this element to start off hidden. -->
+      <!-- It will be shown when an answer is generated. -->
+      <div class="answer" style="display: none"></div>
     </div>
+
+    <script src="app.js" type="text/javascript"></script>
   </body>
 </html>

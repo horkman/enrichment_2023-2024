@@ -11,3 +11,53 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* This targets the answer button by its HTML type. */
+/* Doing this way will ensure the CSS applies to all <input> elements. */
+input {
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* This targets the answer button by its {id} property */
+#answerButton {
+    border-radius: 10px;
+    border: none;
+    width: 200px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: blue;
+    color: white;
+}
+
+#answerButton:hover {
+    filter: brightness(85%);
+}
+
+/* This targets the answer output area by its {class} property */
+.answer {
+    border-radius: 15px;
+    font-size: 22px;
+    margin: 30px;
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
