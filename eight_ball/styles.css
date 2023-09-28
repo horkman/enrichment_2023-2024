@@ -27,17 +27,17 @@ label {
 
 /* This targets the answer button by its HTML type. */
 /* Doing this way will ensure the CSS applies to all <input> elements. */
-input {
+/* input {
     font-size: 18px;
     border-radius: 5px;
     border: none;
     height: 30px;
     width: 100%;
     margin-bottom: 20px;
-}
+} */
 
 /* This targets the answer button by its {id} property */
-#answerButton {
+/* #answerButton {
     border-radius: 10px;
     border: none;
     width: 200px;
@@ -50,14 +50,14 @@ input {
 
 #answerButton:hover {
     filter: brightness(85%);
-}
+} */
 
 /* This targets the answer output area by its {class} property */
-.answer {
+/* .answer {
     border-radius: 15px;
     font-size: 22px;
     margin: 30px;
     padding: 20px;
     background-color: black;
     color: white;
-}
+} */

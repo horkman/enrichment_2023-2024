@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Eight Ball App</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
 
     <!-- These are our custom CSS styles -->
     <link href="./styles.css" rel="stylesheet" />
@@ -21,19 +31,30 @@
   <body>
     <div class="app">
       <form>
-        <label for="question"
+        <label for="question" class="form-label"
           >Ask me a question and I'll give you an answer!</label
         >
-        <input type="text" id="question" />
-        <button type="button" id="answerButton">Answer My Question</button>
-        <button type="button" id="resetButton">Reset</button>
+        <input type="text" id="question" class="form-control" />
+        <button type="button" id="answerButton" class="btn btn-primary">
+          Answer My Question
+        </button>
+        <button type="button" id="resetButton" class="btn btn-secondary">
+          Reset
+        </button>
       </form>
 
       <!-- We want this element to start off hidden. -->
       <!-- It will be shown when an answer is generated. -->
-      <div class="answer"></div>
+      <div class="answer alert alert-success"></div>
+
+      <img src="ducks.jpeg" width="500" height="500" />
     </div>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
     <script src="app.js" type="text/javascript"></script>
   </body>
 </html>
