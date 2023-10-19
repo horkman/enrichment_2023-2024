@@ -1,7 +1,7 @@
 const express = require("express");
-const app = express();
-const port = process.env.PORT || 3000;
 
+// Initialize our web server
+const app = express();
 app.use(express.static("public"));
 
 app.get("/hello", (req, res) => {
@@ -9,6 +9,7 @@ app.get("/hello", (req, res) => {
 });
 
 // Always run this code last!
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Web Server listening on port ${port}`);
 });
