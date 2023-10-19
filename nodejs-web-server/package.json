@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "serve": "nodemon --watch server --exec \"npm start\""
+    "watch": "nodemon --watch server --exec \"npm start\""
   },
   "keywords": [],
   "author": "",
