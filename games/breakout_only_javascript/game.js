@@ -18,8 +18,26 @@ let y = canvas.height - 30;
 let dx = 2;
 let dy = -2;
 
-// Let's start off with a random ball color
 let ballColor = getRandomColor();
+let paddleColor = getRandomColor();
+
+// Boolean variables to track if the keyboard keys were pressed
+let rightPressed = false;
+let leftPressed = false;
+
+// Define the size of the paddle
+const paddleHeight = 10;
+const paddleWidth = 75;
+// Starting point of the paddle on the x axis
+let paddleX = (canvas.width - paddleWidth) / 2;
+
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+  ctx.fillStyle = paddleColor;
+  ctx.fill();
+  ctx.closePath();
+}
 
 /*
  * This function will generate a random HTML hex color
@@ -48,6 +66,26 @@ function drawBall() {
   ctx.closePath();
 }
 
+function keyDownHandler(e) {
+  console.log(e);
+  if (e.key === "Right" || e.key === "ArrowRight") {
+    rightPressed = true;
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
+    leftPressed = true;
+  }
+}
+
+function keyUpHandler(e) {
+  if (e.key === "Right" || e.key === "ArrowRight") {
+    rightPressed = false;
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
+    leftPressed = false;
+  }
+}
+
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
 /*
  * This function will draw our game every "frame"
  */
@@ -55,8 +93,8 @@ function draw() {
   // Don't forget to clear the screen first!
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw a ball
   drawBall();
+  drawPaddle();
 
   const isAboutToHitRightWall = x + dx > canvas.width;
   const isAboutToHitLeftWall = x + dx < 0;
@@ -66,12 +104,27 @@ function draw() {
     ballColor = getRandomColor();
   }
 
-  const isAboutToHitBottomWall = y + dy > canvas.height;
-  const isAboutToHitTopWall = y + dy < 0;
-  if (isAboutToHitBottomWall || isAboutToHitTopWall) {
-    // We hit a wall!
+  const isAboutToHitTopWall = y + dy < ballRadius;
+  const isAboutToHitBottomWall = y + dy > canvas.height - ballRadius;
+  if (isAboutToHitTopWall) {
     dy = -dy;
     ballColor = getRandomColor();
+  } else if (isAboutToHitBottomWall) {
+    const isAboutToHitPaddle = x > paddleX && x < paddleX + paddleWidth;
+    if (isAboutToHitPaddle) {
+      dy = -dy;
+    } else {
+      alert("GAME OVER");
+      document.location.reload();
+      clearInterval(interval);
+    }
+  }
+
+  // Update the position of the paddle
+  if (rightPressed) {
+    paddleX = Math.min(paddleX + 7, canvas.width - paddleWidth);
+  } else if (leftPressed) {
+    paddleX = Math.max(paddleX - 7, 0);
   }
 
   // Update X and Y so the ball will
@@ -82,4 +135,4 @@ function draw() {
 
 // Every 10 milliseconds, run the "draw" function
 // (or another way to think about it is "each frame run the draw function")
-setInterval(draw, 10);
+const interval = setInterval(draw, 10);
