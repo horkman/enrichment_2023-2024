@@ -67,7 +67,6 @@ function drawBall() {
 }
 
 function keyDownHandler(e) {
-  console.log(e);
   if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = true;
   } else if (e.key === "Left" || e.key === "ArrowLeft") {
@@ -102,6 +101,8 @@ function draw() {
     // We hit a wall!
     dx = -dx;
     ballColor = getRandomColor();
+    const pingAudio = new Audio("./sounds/hammer.mp3");
+    pingAudio.play();
   }
 
   const isAboutToHitTopWall = y + dy < ballRadius;
@@ -109,10 +110,15 @@ function draw() {
   if (isAboutToHitTopWall) {
     dy = -dy;
     ballColor = getRandomColor();
+    const pingAudio = new Audio("./sounds/hammer.mp3");
+    pingAudio.play();
   } else if (isAboutToHitBottomWall) {
     const isAboutToHitPaddle = x > paddleX && x < paddleX + paddleWidth;
     if (isAboutToHitPaddle) {
       dy = -dy;
+      ballColor = getRandomColor();
+      const pingAudio = new Audio("./sounds/hammer.mp3");
+      pingAudio.play();
     } else {
       alert("GAME OVER");
       document.location.reload();
