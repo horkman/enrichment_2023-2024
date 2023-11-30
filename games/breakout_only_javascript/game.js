@@ -10,6 +10,9 @@ const ctx = canvas.getContext("2d");
 // Variable to keep track of the score
 let score = 0;
 
+// Variable to keep track of remaining lives/attempts
+let lives = 3;
+
 // Define how big the ball is
 const ballRadius = 10;
 
@@ -38,6 +41,12 @@ function drawScore() {
   ctx.font = "16px Arial";
   ctx.fillStyle = "#0095DD";
   ctx.fillText(`Score: ${score}`, 8, 20);
+}
+
+function drawLives() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
 }
 
 function drawPaddle() {
@@ -105,6 +114,7 @@ function draw() {
   drawBall();
   drawPaddle();
   drawScore();
+  drawLives();
   collisionDetection();
 
   const isAboutToHitRightWall = x + dx > canvas.width;
@@ -132,9 +142,18 @@ function draw() {
       const pingAudio = new Audio("./sounds/hammer.mp3");
       pingAudio.play();
     } else {
-      // Stop the game loop and show the dialog
-      clearInterval(interval);
-      showGameOverDialog();
+      lives = lives - 1;
+      if (lives === 0) {
+        // Stop the game loop and show the dialog
+        clearInterval(interval);
+        showGameOverDialog();
+      } else {
+        x = canvas.width / 2;
+        y = canvas.height - 30;
+        dx = 2;
+        dy = -2;
+        paddleX = (canvas.width - paddleWidth) / 2;
+      }
     }
   }
 
