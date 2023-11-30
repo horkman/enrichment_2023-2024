@@ -21,8 +21,8 @@ let x = canvas.width / 2;
 let y = canvas.height - 30;
 
 // Define how pany pixels the ball will move each frame
-let dx = 2;
-let dy = -2;
+let dx = 5;
+let dy = -5;
 
 let ballColor = getRandomColor();
 let paddleColor = getRandomColor();
@@ -145,13 +145,12 @@ function draw() {
       lives = lives - 1;
       if (lives === 0) {
         // Stop the game loop and show the dialog
-        clearInterval(interval);
-        showGameOverDialog();
+        return showGameOverDialog();
       } else {
         x = canvas.width / 2;
         y = canvas.height - 30;
-        dx = 2;
-        dy = -2;
+        dx = 5;
+        dy = -5;
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
@@ -168,6 +167,7 @@ function draw() {
   // draw in a new spot next "frame"
   x = x + dx;
   y = y + dy;
+  requestAnimationFrame(draw);
 }
 
 function showGameOverDialog() {
@@ -187,4 +187,4 @@ document.addEventListener("mousemove", mouseMoveHandler, false);
 
 // Every 10 milliseconds, run the "draw" function
 // (or another way to think about it is "each frame run the draw function")
-const interval = setInterval(draw, 10);
+draw();
