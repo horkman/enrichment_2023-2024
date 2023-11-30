@@ -9,11 +9,28 @@
         display: block;
         margin: 100px auto 0 auto;
       }
+
+      dialog {
+        position: absolute;
+        top: 150px;
+      }
+
+      button {
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <canvas id="myCanvas" width="480" height="320"></canvas>
 
+    <dialog id="dialog">
+      <p style="text-align: center">Game Over!</p>
+      <form id="dialogForm" method="dialog">
+        <button>Start New Game</button>
+      </form>
+    </dialog>
+
+    <script type="text/javascript" src="./bricks.js"></script>
     <script type="text/javascript" src="./game.js"></script>
   </body>
 </html>

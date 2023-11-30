@@ -7,6 +7,9 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
+// Variable to keep track of the score
+let score = 0;
+
 // Define how big the ball is
 const ballRadius = 10;
 
@@ -30,6 +33,12 @@ const paddleHeight = 10;
 const paddleWidth = 75;
 // Starting point of the paddle on the x axis
 let paddleX = (canvas.width - paddleWidth) / 2;
+
+function drawScore() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText(`Score: ${score}`, 8, 20);
+}
 
 function drawPaddle() {
   ctx.beginPath();
@@ -92,8 +101,11 @@ function draw() {
   // Don't forget to clear the screen first!
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  drawBricks();
   drawBall();
   drawPaddle();
+  drawScore();
+  collisionDetection();
 
   const isAboutToHitRightWall = x + dx > canvas.width;
   const isAboutToHitLeftWall = x + dx < 0;
@@ -120,9 +132,9 @@ function draw() {
       const pingAudio = new Audio("./sounds/hammer.mp3");
       pingAudio.play();
     } else {
-      alert("GAME OVER");
-      document.location.reload();
+      // Stop the game loop and show the dialog
       clearInterval(interval);
+      showGameOverDialog();
     }
   }
 
@@ -138,6 +150,21 @@ function draw() {
   x = x + dx;
   y = y + dy;
 }
+
+function showGameOverDialog() {
+  document.getElementById("dialog").open = true;
+  document.getElementById("dialogForm").addEventListener("submit", function () {
+    document.location.reload();
+  });
+}
+
+function mouseMoveHandler(e) {
+  const relativeX = e.clientX - canvas.offsetLeft;
+  if (relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth / 2;
+  }
+}
+document.addEventListener("mousemove", mouseMoveHandler, false);
 
 // Every 10 milliseconds, run the "draw" function
 // (or another way to think about it is "each frame run the draw function")
