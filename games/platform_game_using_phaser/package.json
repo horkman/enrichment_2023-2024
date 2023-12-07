@@ -1,0 +1,18 @@
+{
+  "name": "platform_game_using_phaser",
+  "version": "1.0.0",
+  "description": "https://mozdevs.github.io/html5-games-workshop/en/guides/platformer/start-here/",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "watch": "nodemon --watch public --exec \"npm start\""
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
